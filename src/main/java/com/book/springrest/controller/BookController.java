@@ -61,7 +61,7 @@ public class BookController {
         return bookRepository.save(book);
     }
 
-    @GetMapping("/{keyWord}")
+    @GetMapping("/books/search")
     public List <Book> searchByKeyWord(@RequestBody Map<String , String> body){
         String keyWord = body.get("text");
         return bookRepository.findByTitleContainingOrDescriptionContaining(keyWord, keyWord);
