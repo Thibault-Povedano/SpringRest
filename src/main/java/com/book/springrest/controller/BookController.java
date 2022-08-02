@@ -4,7 +4,6 @@ package com.book.springrest.controller;
 import com.book.springrest.entity.Book;
 import com.book.springrest.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -30,8 +29,7 @@ public class BookController {
     public Book getById(@PathVariable Long id){
        Optional<Book> optionalBook = bookRepository.findById(id);
 
-       if(optionalBook.isPresent()) return optionalBook.get();
-       return null;
+        return optionalBook.orElse(null);
     }
 
     @PutMapping("/{id}")
